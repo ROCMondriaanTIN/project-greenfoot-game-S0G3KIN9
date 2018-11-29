@@ -10,6 +10,7 @@ public class Hero extends Mover {
     private final double gravity;
     private final double acc;
     private final double drag;
+    private boolean onGround = true;
 
     public Hero() {
         super();
@@ -22,7 +23,7 @@ public class Hero extends Mover {
     @Override
     public void act() {
         handleInput();
-        
+
         velocityX *= drag;
         velocityY += acc;
         if (velocityY > gravity) {
@@ -33,20 +34,38 @@ public class Hero extends Mover {
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
                 getWorld().removeObject(this);
-                break;
+                return;
             }
         }
+        for (Actor enemy : getIntersectingObjects(Springveer.class)) {
+            if (enemy != null) {
+                velocityY = -30;
+                setLocation(getX() + 10, getY());
+                return;
+            }
+        }
+        if(isTouching(Water.class)){
+            getWorld().removeObject(this);
+            return;
+        }   
     }
-
+    
+    public boolean onGround(){
+        if(isTouching(Tile.class) == true){
+            return true;
+        }
+        return false;
+    }
+    
     public void handleInput() {
-        if (Greenfoot.isKeyDown("w")) {
-            velocityY = -20;
+        if (Greenfoot.isKeyDown("space") && onGround() == true) {
+            velocityY = -15;
         }
 
-        if (Greenfoot.isKeyDown("a")) {
-            velocityX = -2;
-        } else if (Greenfoot.isKeyDown("d")) {
-            velocityX = 2;
+        if (Greenfoot.isKeyDown("left")) {
+            velocityX = -5;
+        } else if (Greenfoot.isKeyDown("right")) {
+            velocityX = 5;
         }
     }
 
