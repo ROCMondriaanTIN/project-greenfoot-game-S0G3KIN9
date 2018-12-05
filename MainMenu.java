@@ -16,6 +16,15 @@ public class MainMenu extends World
     public MainMenu()
     {    
         super(1000, 800, 1);
-        setBackground("red-wall-grunge-texture-background.png");
+        setBackground("MainMenu.png");
+    }
+
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
+    public void act()
+    {
+        if (Greenfoot.isKeyDown ("enter")) Greenfoot.setWorld(new LevelSelector());
     }
 }

@@ -11,6 +11,7 @@ public class Hero extends Mover {
     private final double acc;
     private final double drag;
     private boolean onGround = true;
+    private static int scaleDecrease = 1;
 
     public Hero() {
         super();
@@ -30,7 +31,7 @@ public class Hero extends Mover {
             velocityY = gravity;
         }
         applyVelocity();
-
+        CharacterSwitch();
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
                 getWorld().removeObject(this);
@@ -47,18 +48,22 @@ public class Hero extends Mover {
         if(isTouching(Water.class)){
             getWorld().removeObject(this);
             return;
-        }   
+        }
+        if(isTouching(Lava.class)){
+            getWorld().removeObject(this);
+            return;
+        }
     }
-    
+
     public boolean onGround(){
         if(isTouching(Tile.class) == true){
             return true;
         }
         return false;
     }
-    
+
     public void handleInput() {
-        if (Greenfoot.isKeyDown("space") && onGround() == true) {
+        if (Greenfoot.isKeyDown("space") /*&& onGround() == true*/) {
             velocityY = -15;
         }
 
@@ -75,5 +80,18 @@ public class Hero extends Mover {
 
     public int getHeight() {
         return getImage().getHeight();
+    }
+
+    public void CharacterSwitch(){
+        if (isTouching(CharacterMuntPaars.class) == true){
+        removeTouching(CharacterMuntPaars.class);
+        setImage("p3_front.png");
+        getImage().scale(getWidth() - scaleDecrease, getHeight() - scaleDecrease);
+        }
+        if (isTouching(CharacterMuntBlauw.class) == true){
+        removeTouching(CharacterMuntBlauw.class);
+        setImage("p2_front.png");
+        getImage().scale(getWidth() - scaleDecrease, getHeight() - scaleDecrease);
+    }
     }
 }
