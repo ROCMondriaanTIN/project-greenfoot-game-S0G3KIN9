@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GeleSleutel extends Mover
 {
+    public static int geleSleutel;
     public GeleSleutel() {
         super();
         setImage("keyYellow.png");

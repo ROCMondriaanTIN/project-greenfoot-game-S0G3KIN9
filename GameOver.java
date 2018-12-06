@@ -1,26 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MainMenu here.
+ * Write a description of class GameOver here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MainMenu extends World
+public class GameOver extends World
 {
 
     /**
-     * Constructor for objects of class MainMenu.
+     * Constructor for objects of class GameOver.
      * 
      */
-    public MainMenu()
+    public GameOver()
     {    
-        super(1000, 800, 1);
-        setBackground("MainMenu.png");
-        Greenfoot.start();
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        super(1000, 800, 1); 
+        setBackground("GameOver.png");
     }
-
-   
     public void act()
     {
         if (Greenfoot.isKeyDown ("enter")) Greenfoot.setWorld(new LevelSelector());

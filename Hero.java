@@ -12,6 +12,7 @@ public class Hero extends Mover {
     private final double drag;
     private boolean onGround = true;
     private static int scaleDecrease = 1;
+    public static int level;
 
     public Hero() {
         super();
@@ -23,8 +24,10 @@ public class Hero extends Mover {
 
     @Override
     public void act() {
+        //System.out.println(level);
         handleInput();
-
+        SleutelOppakken();
+        door();
         velocityX *= drag;
         velocityY += acc;
         if (velocityY > gravity) {
@@ -35,6 +38,7 @@ public class Hero extends Mover {
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
                 getWorld().removeObject(this);
+                Greenfoot.setWorld(new GameOver());
                 return;
             }
         }
@@ -45,12 +49,21 @@ public class Hero extends Mover {
                 return;
             }
         }
+        for (Actor enemy : getIntersectingObjects(Springveer2.class)) {
+            if (enemy != null) {
+                velocityY = -45 ;
+                setLocation(getX() + 10, getY());
+                return;
+            }
+        }
         if(isTouching(Water.class)){
             getWorld().removeObject(this);
+            Greenfoot.setWorld(new GameOver());
             return;
         }
         if(isTouching(Lava.class)){
             getWorld().removeObject(this);
+            Greenfoot.setWorld(new GameOver());
             return;
         }
     }
@@ -62,8 +75,18 @@ public class Hero extends Mover {
         return false;
     }
 
+    public void door(){
+    if(isTouching(DoorG.class))
+    {
+         if(GeleSleutel.geleSleutel >= 1)   
+        {
+            Greenfoot.setWorld(new LevelSelector());
+        }
+    }
+}
+
     public void handleInput() {
-        if (Greenfoot.isKeyDown("space") /*&& onGround() == true*/) {
+        if (Greenfoot.isKeyDown("space") && onGround() == true) {
             velocityY = -15;
         }
 
@@ -84,14 +107,21 @@ public class Hero extends Mover {
 
     public void CharacterSwitch(){
         if (isTouching(CharacterMuntPaars.class) == true){
-        removeTouching(CharacterMuntPaars.class);
-        setImage("p3_front.png");
-        getImage().scale(getWidth() - scaleDecrease, getHeight() - scaleDecrease);
+            removeTouching(CharacterMuntPaars.class);
+            setImage("p3_front.png");
+            getImage().scale(getWidth() - scaleDecrease, getHeight() - scaleDecrease);
         }
         if (isTouching(CharacterMuntBlauw.class) == true){
-        removeTouching(CharacterMuntBlauw.class);
-        setImage("p2_front.png");
-        getImage().scale(getWidth() - scaleDecrease, getHeight() - scaleDecrease);
+            removeTouching(CharacterMuntBlauw.class);
+            setImage("p2_front.png");
+            getImage().scale(getWidth() - scaleDecrease, getHeight() - scaleDecrease);
+        }
     }
+    GeleSleutel gs = new GeleSleutel();
+    public void SleutelOppakken(){
+        if (isTouching(GeleSleutel.class) == true){
+            removeTouching(GeleSleutel.class);
+            GeleSleutel.geleSleutel++;
+        }
     }
 }

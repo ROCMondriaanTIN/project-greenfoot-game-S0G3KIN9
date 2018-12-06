@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Level2 extends World
+public class Level2 extends MyWorld
 {
     private CollisionEngine ce;
     public void act(){
@@ -15,7 +15,9 @@ public class Level2 extends World
     }
     public Level2()
     {    
-        super(1000, 800, 1, false);
+       
+        GeleSleutel.geleSleutel = 0;
+        Hero.level = 2;
         this.setBackground("rock_4.png");
 
         int[][] map = {

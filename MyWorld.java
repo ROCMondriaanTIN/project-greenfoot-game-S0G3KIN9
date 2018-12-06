@@ -22,6 +22,5 @@ public class MyWorld extends World {
 
     @Override
     public void act() {
-        ce.update();
     }
 }

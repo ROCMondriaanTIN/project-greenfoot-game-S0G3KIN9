@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Springveer2
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Springveer2\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=image\ width\ heigth
+comment1.target=Springveer2(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=void\ act()
+numComments=3
