@@ -13,7 +13,8 @@ public class Hero extends Mover {
     private boolean onGround = true;
     private static int scaleDecrease = 1;
     public static int level;
-
+    public static int speed = 5;
+    public static int jumpPower = 15;
     public Hero() {
         super();
         gravity = 9.8;
@@ -35,6 +36,7 @@ public class Hero extends Mover {
         }
         applyVelocity();
         CharacterSwitch();
+       
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
                 getWorld().removeObject(this);
@@ -42,6 +44,15 @@ public class Hero extends Mover {
                 return;
             }
         }
+        
+        for (Actor Vuurbal : getIntersectingObjects(Vuurbal.class)) {
+            if (Vuurbal != null) {
+                getWorld().removeObject(this);
+                Greenfoot.setWorld(new GameOver());
+                return;
+            }
+        }
+        
         for (Actor enemy : getIntersectingObjects(Springveer.class)) {
             if (enemy != null) {
                 velocityY = -30;
@@ -81,19 +92,20 @@ public class Hero extends Mover {
          if(GeleSleutel.geleSleutel >= 1)   
         {
             Greenfoot.setWorld(new LevelSelector());
+            LevelSelector.maxLevel ++;
         }
     }
 }
 
     public void handleInput() {
-        if (Greenfoot.isKeyDown("space") && onGround() == true) {
-            velocityY = -15;
+        if (Greenfoot.isKeyDown("space") /*&& onGround() == true*/) {
+            velocityY = -jumpPower;
         }
 
         if (Greenfoot.isKeyDown("left")) {
-            velocityX = -5;
+            velocityX = -speed;
         } else if (Greenfoot.isKeyDown("right")) {
-            velocityX = 5;
+            velocityX = speed;
         }
     }
 
@@ -110,11 +122,17 @@ public class Hero extends Mover {
             removeTouching(CharacterMuntPaars.class);
             setImage("p3_front.png");
             getImage().scale(getWidth() - scaleDecrease, getHeight() - scaleDecrease);
+            speed = 4;
+            jumpPower = 10;
         }
+        
+        
         if (isTouching(CharacterMuntBlauw.class) == true){
             removeTouching(CharacterMuntBlauw.class);
             setImage("p2_front.png");
             getImage().scale(getWidth() - scaleDecrease, getHeight() - scaleDecrease);
+            speed = 6;
+            jumpPower = 20;
         }
     }
     GeleSleutel gs = new GeleSleutel();
@@ -123,5 +141,6 @@ public class Hero extends Mover {
             removeTouching(GeleSleutel.class);
             GeleSleutel.geleSleutel++;
         }
-    }
+    }    
+    
 }

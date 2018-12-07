@@ -102,7 +102,7 @@ public class TileFactory {
             tile = new DoorG("door_closedMid.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
             break;
             case 75:
-            tile = new Tile("grassCenter_rounded.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+            tile = new Tile("grassCenter.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
             break;
             case 82:
             tile = new Tile("grassHalf.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
@@ -145,6 +145,9 @@ public class TileFactory {
             break;    
             case 114:
             tile = new Tile("ropeVertical.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+            break;
+            case 140:
+            tile = new Tile("snowCenter.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
             break;
             case 195:
             tile = new Tile("chain.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);

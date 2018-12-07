@@ -14,7 +14,9 @@ public class Level1 extends MyWorld
         ce.update();
     }
     public Level1()
-    {    
+    {   
+        Hero.speed = 5;
+        Hero.jumpPower = 15;
         GeleSleutel.geleSleutel = 0;
         Hero.level = 1;
         this.setBackground("rock_4.png");
@@ -71,8 +73,8 @@ public class Level1 extends MyWorld
         addObject(camera, 0, 0);
         addObject(hero, 350, 1300);
         addObject(new Enemy("flyFly2.png"), 1170, 1490);
-        addObject(new Enemy("blockerSad.png"), 2400, 1350);
-        addObject(new Diamant(), 1100, 630);
+        addObject(new Enemy("slimeWalk1.png"), 2400, 1360);
+        addObject(new Diamant(), 1200, 630);
         addObject(new CharacterMuntPaars(), 570, 930);
         addObject(new GeleSleutel(), 600, 1840);
         addObject(new Ster(), 1050, 1840);

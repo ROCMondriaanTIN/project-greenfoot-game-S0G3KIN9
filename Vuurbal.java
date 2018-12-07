@@ -23,7 +23,7 @@ public class Vuurbal extends Mover
       
         setImage("fireball.png");
         getImage().mirrorHorizontally();
-        walkRange = 10;
+        walkRange = 0;
         firstAct = true;
         speed = 0;
     }

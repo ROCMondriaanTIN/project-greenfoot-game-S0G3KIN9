@@ -73,8 +73,8 @@ public class Level2 extends MyWorld
         addObject(camera, 0, 0);
         addObject(hero, 150, 1300);
         addObject(new Enemy("flyFly2.png"), 1550, 1200);
-        addObject(new Enemy("blockerSad.png"), 850, 1235);
-        addObject(new Enemy("blockerSad.png"), 1200, 1650);
+        addObject(new Enemy("slimeWalk1.png"), 850, 1245);
+        addObject(new Enemy("slimeWalk1.png"), 1200, 1660);
         addObject(new CharacterMuntBlauw(), 1400, 1650);
         addObject(new GeleSleutel(), 1850, 1750);
         addObject(new Ster(), 1000, 1650);
