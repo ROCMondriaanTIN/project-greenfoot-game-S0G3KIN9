@@ -9,6 +9,7 @@ public class Hero extends Mover {
 
     private final double gravity;
     private final double acc;
+    public static int diamonds = 0;
     private final double drag;
     private boolean onGround = true;
     private static int scaleDecrease = 1;
@@ -98,7 +99,7 @@ public class Hero extends Mover {
 }
 
     public void handleInput() {
-        if (Greenfoot.isKeyDown("space") /*&& onGround() == true*/) {
+        if (Greenfoot.isKeyDown("space") && onGround() == true) {
             velocityY = -jumpPower;
         }
 
@@ -140,6 +141,15 @@ public class Hero extends Mover {
         if (isTouching(GeleSleutel.class) == true){
             removeTouching(GeleSleutel.class);
             GeleSleutel.geleSleutel++;
+        }
+        if(isTouching(Diamant.class)){
+            removeTouching(Diamant.class);
+            diamonds ++;
+            
+        }
+        if(isTouching(Ster.class)){
+            removeTouching(Ster.class);
+            
         }
     }    
     
